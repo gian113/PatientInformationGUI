@@ -1,3 +1,1 @@
-# Group 8 programming OUTPUT:
-
-`#ffffff i still find this crazy`
+# Group 8 programming PETA
