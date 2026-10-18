@@ -7,3 +7,5 @@ root.geometry("300x300")
 root.title("Patient Information System")
 
 root.mainloop()
+
+
