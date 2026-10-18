@@ -2,15 +2,16 @@ MINIMAL ORDER CHECKLIST
 [/] = done
 [o] = in progress
 -----------------------
-  [ ] database.py with load/save and all feature functions
+  [/ gian] database.py with load/save
+  [/ all of us] all feature functions
   [ ] test script confirms database.py works
-  [o] App + RoleSelect + AdminLogin
+  [o xian] App + RoleSelect + AdminLogin
   [ ] AdminMenu, DoctorsPage, EquipmentPage
   [ ] UserMenu + RegistrationMenu + ServicesMenu
   [ ] PatientForm (pattern for all forms)
   [ ] GuestForm, AppointmentForm
   [ ] SearchPage
-  [ ] BillingPage
+  [/ gian] BillingPage
   [ ] Bug list above fixed
   [ ] Full test pass (Step 6)
   [ ] Polish
