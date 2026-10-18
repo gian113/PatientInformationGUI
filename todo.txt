@@ -11,7 +11,7 @@ MINIMAL ORDER CHECKLIST
   [ ] PatientForm (pattern for all forms)
   [ ] GuestForm, AppointmentForm
   [ ] SearchPage
-  [/ gian] BillingPage
+  [o gian] BillingPage
   [ ] Bug list above fixed
   [ ] Full test pass (Step 6)
   [ ] Polish
