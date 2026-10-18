@@ -12,6 +12,6 @@ MINIMAL ORDER CHECKLIST
   [ ] GuestForm, AppointmentForm
   [ ] SearchPage
   [o gian] BillingPage
-  [ ] Bug list above fixed
-  [ ] Full test pass (Step 6)
-  [ ] Polish
+  [o gian] Bug list above fixed
+  [o gian] Full test pass (Step 6)
+  [o gian] Polish
