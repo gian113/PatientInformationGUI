@@ -25,7 +25,7 @@ THEME = {
     "bg":        "#F4F7FA",   # window background
     "header":    "#1F6FB2",   # top title bar
     "header_fg": "#FFFFFF",
-    "text":      "#1E2A35",
+    "text":      "#1E2A35",   # most text
     "muted":     "#6B7A89",
     "primary":   "#1F6FB2",   # main buttons
     "primary_h": "#17598F",   # primary hover
@@ -35,7 +35,7 @@ THEME = {
     "field":     "#FFFFFF",
     "border":    "#C5D0DB",
 }
-FONT = "Segoe UI"
+FONT = "Segoe UI"   # change nyo nalang
 FONT_TITLE = (FONT, 16, "bold")
 FONT_BODY = (FONT, 10)
 FONT_BUTTON = (FONT, 10, "bold")
