@@ -19,6 +19,27 @@ guest_path = os.path.join(dir, "Patient_data.json")
 sex = ["Male", "Female"]
 blood_type = ["A", "A-", "B", "B-", "AB", "AB-", "O", "O-"]
 
+# ---------------------------------------------------------------- DESIGN
+# Change colors/fonts here and the whole app updates.
+THEME = {
+    "bg":        "#F4F7FA",   # window background
+    "header":    "#1F6FB2",   # top title bar
+    "header_fg": "#FFFFFF",
+    "text":      "#1E2A35",
+    "muted":     "#6B7A89",
+    "primary":   "#1F6FB2",   # main buttons
+    "primary_h": "#17598F",   # primary hover
+    "secondary": "#E1E8EF",   # back / secondary buttons
+    "secondary_h": "#CFD9E3",
+    "danger":    "#C0392B",
+    "field":     "#FFFFFF",
+    "border":    "#C5D0DB",
+}
+FONT = "Segoe UI"
+FONT_TITLE = (FONT, 16, "bold")
+FONT_BODY = (FONT, 10)
+FONT_BUTTON = (FONT, 10, "bold")
+
 # Load/Save data
 
 
@@ -28,7 +49,7 @@ def load(path):
     try:
         with open(path, 'r') as file:
             data = json.load(file)
-    except json.JSONDecodeError, OSError:
+    except (json.JSONDecodeError, OSError):
         return []
     return data if isinstance(data, list) else []
 
@@ -49,124 +70,140 @@ def new_id(records, low, high):
         if all(record["I.D."] != number for record in records):
             return number
 
+# TK starting
+root = tk.Tk()
+root.geometry("420x520")
+root.minsize(380, 460)
+root.title("Patient Information System")
+root.configure(bg=THEME["bg"])
+
+# ttk widgets (dropdowns) styling
+style = ttk.Style(root)
+style.theme_use("clam")
+style.configure("TCombobox",
+                fieldbackground=THEME["field"], background=THEME["field"],
+                foreground=THEME["text"], bordercolor=THEME["border"],
+                arrowcolor=THEME["primary"], padding=6)
+style.map("TCombobox", fieldbackground=[("readonly", THEME["field"])])
+
 # window guides
 
 
+def hover(widget, normal, over):
+    widget.bind("<Enter>", lambda e: widget.config(bg=over))
+    widget.bind("<Leave>", lambda e: widget.config(bg=normal))
+
+
 def clear(title_text):
+    """Wipes the window and draws the header bar + a fresh content area."""
+    global content
     for widget in root.winfo_children():
         widget.destroy()
-    tk.Label(root, text=title_text, font=("Arial", 16, "bold")).pack(pady=15)
+
+    bar = tk.Frame(root, bg=THEME["header"], height=64)
+    bar.pack(fill="x")
+    bar.pack_propagate(False)
+    tk.Label(bar, text=title_text, font=FONT_TITLE,
+             bg=THEME["header"], fg=THEME["header_fg"]).pack(expand=True)
+
+    content = tk.Frame(root, bg=THEME["bg"])
+    content.pack(fill="both", expand=True, padx=30, pady=20)
 
 
-def button(text, command):
-    tk.Button(root, text=text, command=command, width=34).pack(pady=4)
+def button(text, command, kind="primary"):
+    """kind: 'primary' (blue), 'secondary' (grey, for Back) or 'danger'."""
+    colors = {
+        "primary":   (THEME["primary"], THEME["primary_h"], "#FFFFFF"),
+        "secondary": (THEME["secondary"], THEME["secondary_h"], THEME["text"]),
+        "danger":    (THEME["danger"], "#A02F23", "#FFFFFF"),
+    }
+    bg, bg_hover, fg = colors[kind]
+    b = tk.Button(content, text=text, command=command, font=FONT_BUTTON,
+                  bg=bg, fg=fg, activebackground=bg_hover, activeforeground=fg,
+                  relief="flat", bd=0, cursor="hand2", pady=8)
+    b.pack(fill="x", pady=5)
+    hover(b, bg, bg_hover)
+    return b
 
 
 def label(text):
-    tk.Label(root, text=text).pack()
+    tk.Label(content, text=text, font=FONT_BODY, bg=THEME["bg"],
+             fg=THEME["muted"], wraplength=340, justify="left").pack(anchor="w")
 
 
 def entry(label_text, show=""):
     """A label with a text box under it. Returns the text box."""
-    tk.Label(root, text=label_text).pack()
-    box = tk.Entry(root, show=show, width=30)
-    box.pack(pady=(0, 8))
+    tk.Label(content, text=label_text, font=FONT_BODY, bg=THEME["bg"],
+             fg=THEME["text"]).pack(anchor="w")
+    box = tk.Entry(content, show=show, font=FONT_BODY, bg=THEME["field"],
+                   fg=THEME["text"], relief="flat", highlightthickness=1,
+                   highlightbackground=THEME["border"],
+                   highlightcolor=THEME["primary"])
+    box.pack(fill="x", pady=(2, 12), ipady=6)
     return box
 
 
 def dropdown(label_text, values):
     """A label with a pick-one list under it. Returns the dropdown."""
-    tk.Label(root, text=label_text).pack()
-    box = ttk.Combobox(root, values=values, state="readonly", width=27)
-    box.pack(pady=(0, 8))
+    tk.Label(content, text=label_text, font=FONT_BODY, bg=THEME["bg"],
+             fg=THEME["text"]).pack(anchor="w")
+    box = ttk.Combobox(content, values=values, state="readonly",
+                       font=FONT_BODY)
+    box.pack(fill="x", pady=(2, 12))
     return box
 
 # Billing Services
 
 
 def billing():
-
-    id = entry(patient_path)
+    clear("Billing")
+    id = entry("Patient I.D.")
 
     def find():
-        for p in load("Patient_data.json"):
+        for p in load(patient_path):
             if str(p["I.D."]) == id.get().strip():
                 return payment_screen(p)
-            messagebox.showerror("Not found", "No matching patient found.")
+        messagebox.showerror("Not found", "No matching patient found.")
     id.bind("<Return>", lambda event: find())
     button("Find Patient", find)
-    button("Back", user_menu)
+    button("Back", user_menu, "secondary")
     id.focus_set()
 
-# Main GUI
 
-
-def payment_screen():
-    pass
-
-
-# TK starting
-root = tk.Tk()
-root.geometry("300x300")
-root.title("Patient Information System")
+def payment_screen(patient=None):
+    clear("Payment")
+    label("Payment screen coming soon.")
+    button("Back", billing, "secondary")
 
 # Admin options/login
 
 
 def admin():
-    window = tk.Toplevel(root)
-    window.title("Admin Login")
-    window.geometry("300x300")
-    
-    tk.Label(window, text="Username").pack(pady=3)
-    admin_login = tk.Entry(window)
-    admin_login.pack()
-
-    tk.Label(window, text="Admin Password").pack(pady=3)
-    admin_login2 = tk.Entry(window)
-    admin_login2.pack()
-
-    def login():
-        user_admin = admin_login.get()
-        passw_admin = admin_login2.get()
-
-        if user_admin == "admin" and passw_admin == "123":
-            tk.messagebox.showinfo("Success", "Login successful!")
-        else:
-            tk.messagebox.showerror("Error", "Incorrect username or password!")
-
-    login_button = tk.Button(window, text="LOGIN", command=login)
-    login_button.pack(pady=10)
-
-def user_menu():
-    window = tk.Toplevel(root)
-    window.title("User Login")
-    window.geometry("300x300")
-    
-    tk.Label(window, text="Username").pack(pady=3)
-    user_login = tk.Entry(window)
-    user_login.pack()
-
-    tk.Label(window, text="Password").pack(pady=3)
-    user_login2 = tk.Entry(window)
-    user_login2.pack()
-
-    def login():
-        username = user_login.get()
-        password = user_login2.get()
-
-        if username == "patient0" and password == "12345":
-            tk.messagebox.showinfo("Success", "Login successful!")
-            window.destroy()
-        else:
-            tk.messagebox.showerror("Error", "Incorrect username or password!")
-
-    login_button = tk.Button(window, text="LOGIN", command=login)
-    login_button.pack(pady=10)
-
-button("user", user_menu)
-button("admin", admin)
+    clear("Admin Login")
+    user = entry("Username")
+    pw = entry("Password", show="*")
+    button("Log In", lambda: None)
+    button("Back", main_menu, "secondary")
+    user.focus_set()
 
 # User options/login
 
+
+def user_menu():
+    clear("User Menu")
+    button("Billing", billing)
+    button("Back", main_menu, "secondary")
+
+# Main GUI
+
+
+def main_menu():
+    clear("Patient Information System")
+    label("Choose how you want to sign in.")
+    tk.Frame(content, bg=THEME["bg"], height=10).pack()
+    button("ADMIN", admin)
+    button("USER", user_menu)
+
+
+main_menu()
 root.mainloop()
