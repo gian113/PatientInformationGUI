@@ -85,7 +85,7 @@ def dropdown(label_text, values):
 
 
 def billing():
-    clear("Billing")
+
     id = entry(patient_path)
 
     def find():
@@ -117,31 +117,56 @@ def admin():
     window = tk.Toplevel(root)
     window.title("Admin Login")
     window.geometry("300x300")
-
+    
+    tk.Label(window, text="Username").pack(pady=3)
     admin_login = tk.Entry(window)
     admin_login.pack()
 
+    tk.Label(window, text="Admin Password").pack(pady=3)
     admin_login2 = tk.Entry(window)
     admin_login2.pack()
 
+    def login():
+        user_admin = admin_login.get()
+        passw_admin = admin_login2.get()
 
-def login(window=root):
-    login_admin = tk.Button(window, text="ADMIN", command=login.destroy)
-    login_admin.pack()
+        if user_admin == "admin" and passw_admin == "123":
+            tk.messagebox.showinfo("Success", "Login successful!")
+        else:
+            tk.messagebox.showerror("Error", "Incorrect username or password!")
 
-
-hi = tk.Button(root, text="ADMIN", command=admin)
-hi.pack()
-
-# User options/login
-
+    login_button = tk.Button(window, text="LOGIN", command=login)
+    login_button.pack(pady=10)
 
 def user_menu():
     window = tk.Toplevel(root)
+    window.title("User Login")
+    window.geometry("300x300")
+    
+    tk.Label(window, text="Username").pack(pady=3)
+    user_login = tk.Entry(window)
+    user_login.pack()
 
+    tk.Label(window, text="Password").pack(pady=3)
+    user_login2 = tk.Entry(window)
+    user_login2.pack()
 
-hii = tk.Button(root, text="USER", command=user_menu)
-hii.pack()
+    def login():
+        username = user_login.get()
+        password = user_login2.get()
 
+        if username == "patient0" and password == "12345":
+            tk.messagebox.showinfo("Success", "Login successful!")
+            window.destroy()
+        else:
+            tk.messagebox.showerror("Error", "Incorrect username or password!")
+
+    login_button = tk.Button(window, text="LOGIN", command=login)
+    login_button.pack(pady=10)
+
+button("user", user_menu)
+button("admin", admin)
+
+# User options/login
 
 root.mainloop()
