@@ -204,7 +204,7 @@ def admin_menu():
     button("Medicine & Equipment", medicine_equipment, "primary")
     button("Clinical Information system", clinical_info, "primary")
     button("Patient tracking", patient_tracking, "primary")
-    button("Appointments and Schedules")
+    button("Appointments and Schedules", appointments_schedule, "primary")
     button("Logout", main_menu, "danger")
 
 
@@ -242,11 +242,9 @@ def appointments_schedule():
     
 
 def user():
-    window = tk.Toplevel(root)
-    window.title("User Login")
-    window.geometry("300x300")
+    clear("User Graphical User Interface")
     
-    tk.Label(window, text="Username").pack(pady=3)
+    label(window, text="Username").pack(pady=3)
     user_login = tk.Entry(window)
     user_login.pack()
 
