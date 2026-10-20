@@ -22,7 +22,7 @@ blood_type = ["A", "A-", "B", "B-", "AB", "AB-", "O", "O-"]
 # ---------------------------------------------------------------- DESIGN
 # Change colors/fonts here and the whole app updates.
 THEME = {
-    "bg":        "#F4F7FA",   # window background
+    "bg":        "#161128",   # window background
     "header":    "#1F6FB2",   # top title bar
     "header_fg": "#FFFFFF",
     "text":      "#1E2A35",   # most text
@@ -69,6 +69,7 @@ def new_id(records, low, high):
         number = random.randint(low, high)
         if all(record["I.D."] != number for record in records):
             return number
+
 
 # TK starting
 root = tk.Tk()

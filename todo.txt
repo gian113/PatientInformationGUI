@@ -6,11 +6,11 @@ MINIMAL ORDER CHECKLIST
   [/ all of us] all feature functions
   [ ] test script confirms database.py works
   [o xian] App + RoleSelect + AdminLogin
-  [ ] AdminMenu, DoctorsPage, EquipmentPage
-  [ ] UserMenu + RegistrationMenu + ServicesMenu
-  [ ] PatientForm (pattern for all forms)
-  [ ] GuestForm, AppointmentForm
-  [ ] SearchPage
+  [xian ] AdminMenu, DoctorsPage, EquipmentPage
+  [xian] UserMenu + RegistrationMenu + ServicesMenu
+  [xian] PatientForm (pattern for all forms)
+  [aira] GuestForm, AppointmentForm
+  [aira] SearchPage
   [o gian] BillingPage
   [o gian] Bug list above fixed
   [o gian] Full test pass (Step 6)
