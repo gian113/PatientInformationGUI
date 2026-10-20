@@ -24,6 +24,7 @@ import json
 import os
 import random
 
+
 # locates the first 2 folders outside of this one
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 dir = os.path.join(root_dir, "database")  # locates the files within the folder
@@ -32,8 +33,8 @@ dir = os.path.join(root_dir, "database")  # locates the files within the folder
 patient_path = os.path.join(dir, "Patient_data.json")
 appointment_path = os.path.join(dir, "appointments.json")
 Equipment_path = os.path.join(dir, "Equipment.json")
-Medical_path = os.path.join(dir, "Patient_data.json")
-guest_path = os.path.join(dir, "Patient_data.json")
+Medical_path = os.path.join(dir, "Medical_personel")
+guest_path = os.path.join(dir, "guest_data.json")
 
 # Patient Info
 sex = ["Male", "Female"]
