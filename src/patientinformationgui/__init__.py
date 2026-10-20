@@ -7,11 +7,11 @@ MINIMAL ORDER CHECKLIST
   [/ all of us] all feature functions
   [ ] test script confirms database.py works
   [/ xian] App + RoleSelect + AdminLogin
-  [xian] AdminMenu, DoctorsPage, EquipmentPage
-  [xian] UserMenu + RegistrationMenu + ServicesMenu
-  [xian] PatientForm (pattern for all forms)
-  [aira] GuestForm, AppointmentForm
-  [aira] SearchPage
+  [o xian] AdminMenu, DoctorsPage, EquipmentPage
+  [o xian] UserMenu + RegistrationMenu + ServicesMenu
+  [/ aira] PatientForm (pattern for all forms)
+  [/ aira] GuestForm, AppointmentForm
+  [/ aira] SearchPage
   [o gian] BillingPage
   [o gian] Bug list above fixed
   [o gian] Full test pass (Step 6)
@@ -30,8 +30,8 @@ dir = os.path.join(root_dir, "database")  # locates the files within the folder
 
 # Replace later with right file names
 patient_path = os.path.join(dir, "Patient_data.json")
-appointment_path = os.path.join(dir, "Patient_data.json")
-Equipment_path = os.path.join(dir, "Patient_data.json")
+appointment_path = os.path.join(dir, "appointments.json")
+Equipment_path = os.path.join(dir, "Equipment.json")
 Medical_path = os.path.join(dir, "Patient_data.json")
 guest_path = os.path.join(dir, "Patient_data.json")
 
@@ -42,10 +42,10 @@ blood_type = ["A", "A-", "B", "B-", "AB", "AB-", "O", "O-"]
 # ---------------------------------------------------------------- DESIGN
 # Change colors/fonts here and the whole app updates.
 THEME = {
-    "bg":        "#161128",   # window background
+    "bg":        "#FFFFFF",   # window background
     "header":    "#1F6FB2",   # top title bar
     "header_fg": "#FFFFFF",
-    "text":      "#1E2A35",   # most text
+    "text":      "#141515",   # most text
     "muted":     "#6B7A89",
     "primary":   "#1F6FB2",   # main buttons
     "primary_h": "#17598F",   # primary hover
@@ -59,7 +59,6 @@ FONT = "Segoe UI"   # change nyo nalang
 FONT_TITLE = (FONT, 16, "bold")
 FONT_BODY = (FONT, 10)
 FONT_BUTTON = (FONT, 10, "bold")
-
 # Load/Save data
 
 
@@ -193,10 +192,11 @@ def billing():
 
 def payment_screen(patient=None):
     clear("Payment")
-    label("Payment screen coming soon.")
     button("Back", billing, "secondary")
 
 # Admin options/login
+
+
 def admin():
     clear("Admin Login")
     user = entry("Username")
@@ -206,70 +206,87 @@ def admin():
     user.focus_set()
 
 # User options/login
+
+
 def user_menu():
     clear("User Menu")
     button("Billing", billing)
     button("Back", main_menu, "secondary")
 
 # admin user menu
+
+
 def admin_menu():
     clear("Admin Menu")
     label("Welcome, Admin! Choose!")
     button("Clinical Support Services", clinical_services, "primary")
     button("Medicine & Equipment", medicine_equipment, "primary")
-    button("Patient tracking", patient_tracking, "primary")
+    button("Patient Tracking", patient_tracking, "primary")
     button("Appointments and Schedules", appointments_schedule, "primary")
     button("Logout", main_menu, "danger")
 
 # clinical support services
+
+
 def clinical_services():
     clear("Clinical Services")
     label("CLINIC SERVICES")
+    button("Doctors Appointment", admin_menu, "secondary")
+    button("Blood Test", admin_menu, "secondary")
     button("Back", admin_menu, "danger")
 
 # medicine and equipment
+
+
 def medicine_equipment():
     clear("Medicine and Equipment")
     label("MEDICINE & EQUIPMENTS")
 
-    def medicine_equipment():  # buti di ka gumamit ng for-loop
-        clear("Medicine and Equipment")
-        label("MEDICINE & EQUIPMENTS")
-        label("Available MEDICINES in The Clinic:")
-        label("Paracetamol")
-        label("Biogesic")
-        label("BioFlu")
-        label("Tuseran Forte")
-        label("Loperamide")
-        label("Amlodipine")
-        label("Losartan")
-        label("Amoxicillin")
+    label("Available EQUIPMENTS in The Clinic:")
+    data = load(Equipment_path)
 
-        label("Available EQUIPMENTS in The Clinic:")
-        label("Stethoscope")
-        label("Thermometer")
-        label("Ventilator")
-        label("Defibrillator")
-        label("Glucometer")
-        label("Scalpel Blades & Handles")
-        label("Surgical Forceps")
-        label("First Aid Kit")
-        label("Thermometer")
-        label("Syringe")
-        label("Resuscitator")
-        label("Blood Pressure Monitor")
-        label("Gurney")
+    for equipment in data:
+        label(equipment['Name'])
 
     button("Back", admin_menu, "danger").pack(pady=30)
 
 # patient tracking
+
+
 def patient_tracking():
     clear("Patient Tracking")
     label("PATIENT TRACKER")
 
-    search_box = entry("Insert Patient's Name")
-    button("Search", patient_path, "primary")
+    record = [r for r in load(patient_path) if isinstance(r, dict)]
+    search_btn = button(
+        "Search (I.D., name, or anything in the record)", search, "primary")
     button("Back", admin_menu, "danger")
+
+    name_box = entry("Enter Patient Name")
+
+    def search():
+        name = name_box.get().strip().title()
+
+        for patient in load(patient_path):
+            name = patient.get("Name:", "")
+
+        if name in load(patient_path):
+            clear("Patient Tracking")
+
+            label("PATIENT INFORMATION", "secondary")
+            label(f"Patient ID: {patient.get('I.D.', 'N/A')}")
+            label(f"Name: {name}")
+            label(f"Sex: {patient.get('Sex', 'N/A')}")
+            label(f"Blood Type: {patient.get('Blood Type', 'N/A')}")
+
+            button("Back", admin_menu, "danger")
+            return
+
+        if name not in load(patient_path):
+            messagebox.showwarning("This patient is not in the list.",
+                                   text="Please register through Patient Registration.")
+            return
+
 
 # appointments and schedule
 def appointments_schedule():
@@ -278,26 +295,25 @@ def appointments_schedule():
     label("Available :")
     button("Back", admin_menu, "danger")
 
+
 def user_menu():
     clear("Guest and Patient Registration")
 
     label("Welcome, User!")
     button("Patient Management system", patient_management)
     button("Registration Application", registration_application)
-    # Put billing code here!
+    button("Billing Page", billing)
     button("Back", main_menu, "danger")
 
+
 # patient management system
-
-
 def patient_management():
     clear("Patient Management System")
     label("Patient Management System")
     button("Back", user_menu, "danger")
 
+
 # registration application
-
-
 def registration_application():
     clear("Registration Application")
 
@@ -306,27 +322,57 @@ def registration_application():
     button("Guest Registration", guest_registration)
     button("Back", user_menu, "danger")
 
+
 # PATIENT application
-
-
 def patient_registration():
     clear("Patient Registration")
 
     label("Register Applicant")
-    first_name = entry("First Name")
-    last_name = entry("Lastname")
+    pget_name = entry("Full Name")
 
-    button("REGISTER", patient_registration)
+    def pregister():
+        pfull_name = pget_name.get().strip()
+
+        if not pfull_name:
+            messagebox.showwarning(
+                "Warning", text="Please enter the patient's full name.")
+            return
+
+        precords = load(patient_path)
+        patient = {"I.D.": new_id(precords, 100000, 999999),
+                   "Full Name": pfull_name}
+        precords.append(patient)
+        save(patient_path, precords)
+
+        messagebox.showinfo("Success!", "Patient registered succesfully!")
+        patient_registration()
+    button("REGISTER", pregister)
     button("Close", user_menu, "danger")
+
 
 # GUEST application
 def guest_registration():
     clear("Guest Registration")
-    first_name = entry("first_name")
-    last_name = entry("last_name")
 
-    tk.Button("Register", guest_registration)
+    label("Guest Applcant")
+    gget_name = entry("Full Name")
+
+    def gregister():
+        gfull_name = gget_name.get().strip()
+
+        if not gfull_name:
+            messagebox.showwarning(
+                "Warning", "Please enter the guest's full name.")
+            return
+
+        grecords = load(guest_path)
+        guest = {"I.D.": new_id(grecords, 100000, 999999),
+                 "Full Name": gfull_name}
+        grecords.append(guest)
+        save(patient_path, grecords)
+    button("REGISTER", gregister)
     button("Close", user_menu, "danger")
+
 
 # Main GUI
 def main_menu():
