@@ -5,10 +5,10 @@ MINIMAL ORDER CHECKLIST
   [/ gian] database.py with load/save
   [/ all of us] all feature functions
   [ ] test script confirms database.py works
-  [o xian] App + RoleSelect + AdminLogin
-  [xian ] AdminMenu, DoctorsPage, EquipmentPage
+  [/ xian] App + RoleSelect + AdminLogin
+  [xian] AdminMenu, DoctorsPage, EquipmentPage
   [xian] UserMenu + RegistrationMenu + ServicesMenu
-  [xian] PatientForm (pattern for all forms)
+  [aira] PatientForm (pattern for all forms)
   [aira] GuestForm, AppointmentForm
   [aira] SearchPage
   [o gian] BillingPage

@@ -1,3 +1,23 @@
+'''
+MINIMAL ORDER CHECKLIST 
+[/] = done
+[o] = in progress
+-----------------------
+  [/ gian] database.py with load/save
+  [/ all of us] all feature functions
+  [ ] test script confirms database.py works
+  [/ xian] App + RoleSelect + AdminLogin
+  [xian] AdminMenu, DoctorsPage, EquipmentPage
+  [xian] UserMenu + RegistrationMenu + ServicesMenu
+  [xian] PatientForm (pattern for all forms)
+  [aira] GuestForm, AppointmentForm
+  [aira] SearchPage
+  [o gian] BillingPage
+  [o gian] Bug list above fixed
+  [o gian] Full test pass (Step 6)
+  [o gian] Polish
+'''
+
 import tkinter as tk
 from tkinter import messagebox, ttk
 import json
@@ -177,8 +197,6 @@ def payment_screen(patient=None):
     button("Back", billing, "secondary")
 
 # Admin options/login
-
-
 def admin():
     clear("Admin Login")
     user = entry("Username")
@@ -188,166 +206,129 @@ def admin():
     user.focus_set()
 
 # User options/login
-
-
 def user_menu():
     clear("User Menu")
     button("Billing", billing)
     button("Back", main_menu, "secondary")
 
 # admin user menu
-
 def admin_menu():
     clear("Admin Menu")
     label("Welcome, Admin! Choose!")
     button("Clinical Support Services", clinical_services, "primary")
     button("Medicine & Equipment", medicine_equipment, "primary")
-    button("Clinical Information system", clinical_info, "primary")
     button("Patient tracking", patient_tracking, "primary")
     button("Appointments and Schedules", appointments_schedule, "primary")
     button("Logout", main_menu, "danger")
 
-
-#clinical support services
+# clinical support services
 def clinical_services():
     clear("Clinical Services")
     label("CLINIC SERVICES")
     button("Back", admin_menu, "danger")
 
-#medicine and equipment
+# medicine and equipment
 def medicine_equipment():
     clear("Medicine and Equipment")
     label("MEDICINE & EQUIPMENTS")
-    label("Available :")
-    button("Back", admin_menu, "danger")
 
-#clinical information system
-def clinical_info():
-    clear("Clinical Information System")
-    label("CLINICAL INFORMATION SYSTEM")
-    button("Back", admin_menu, "danger")
+    def medicine_equipment():  # buti di ka gumamit ng for-loop
+        clear("Medicine and Equipment")
+        label("MEDICINE & EQUIPMENTS")
+        label("Available MEDICINES in The Clinic:")
+        label("Paracetamol")
+        label("Biogesic")
+        label("BioFlu")
+        label("Tuseran Forte")
+        label("Loperamide")
+        label("Amlodipine")
+        label("Losartan")
+        label("Amoxicillin")
 
-#patient tracking
+        label("Available EQUIPMENTS in The Clinic:")
+        label("Stethoscope")
+        label("Thermometer")
+        label("Ventilator")
+        label("Defibrillator")
+        label("Glucometer")
+        label("Scalpel Blades & Handles")
+        label("Surgical Forceps")
+        label("First Aid Kit")
+        label("Thermometer")
+        label("Syringe")
+        label("Resuscitator")
+        label("Blood Pressure Monitor")
+        label("Gurney")
+
+    button("Back", admin_menu, "danger").pack(pady=30)
+
+# patient tracking
 def patient_tracking():
     clear("Patient Tracking")
     label("PATIENT TRACKER")
+
+    search_box = entry("Insert Patient's Name")
+    button("Search", patient_path, "primary")
     button("Back", admin_menu, "danger")
 
-#appointments and schedule
+# appointments and schedule
 def appointments_schedule():
     clear("Appointments and Schedule")
     label("APPOINTMENT & SCHEDULES")
     label("Available :")
     button("Back", admin_menu, "danger")
-    
-
-def user():
-    clear("User Graphical User Interface")
-    
-    label(window, text="Username").pack(pady=3)
-    user_login = tk.Entry(window)
-    user_login.pack()
-
-    tk.Label(window, text="Password").pack(pady=3)
-    user_login2 = tk.Entry(window)
-    user_login2.pack()
-
-    def login():
-        username = user_login.get()
-        password = user_login2.get()
-
-        if username == "patient0" and password == "12345":
-            tk.messagebox.showinfo("Success", "Login successful!")
-            user_menu()
-        else:
-            tk.messagebox.showerror("Error", "Incorrect username or password!")
-
-    login_button = tk.Button(window, text="LOGIN", command=login)
-    login_button.pack(pady=10)
 
 def user_menu():
-    menu = tk.Toplevel(root)
-    menu.title("User Menu")
-    menu.geometry("300x400")
+    clear("Guest and Patient Registration")
 
-    tk.Label(menu, text="Welcome, User! Choose!").pack(pady=5)
-    tk.Button(menu, text="Patient Management system", command=patient_management).pack(pady=5)
-    tk.Button(menu, text="Registration Application", command=registration_application).pack(pady=5)
-    tk.Button(menu, text="Client Resource Management Application", command=client_resource_application).pack(pady=5)
-    #Put billing code here!
-    tk.Button(menu, text="Logout", command=menu.destroy).pack(pady=15)
+    label("Welcome, User!")
+    button("Patient Management system", patient_management)
+    button("Registration Application", registration_application)
+    # Put billing code here!
+    button("Back", main_menu, "danger")
 
-#patient management system
+# patient management system
+
+
 def patient_management():
-    menu = tk.Toplevel(root)
-    menu.title("Patient Management System")
-    menu.geometry("300x400")
+    clear("Patient Management System")
+    label("Patient Management System")
+    button("Back", user_menu, "danger")
 
-    tk.Label(menu, text="PATIENT MANAGEMENT SYSTEM",font=("Times New Roman", 10, "bold")).pack(pady=15)
-    tk.Button(menu, text="Close", command=menu.destroy).pack(pady=15)
+# registration application
 
-#registration application
+
 def registration_application():
-    menu = tk.Toplevel(root)
-    menu.title("Registration Application")
-    menu.geometry("300x400")
+    clear("Registration Application")
 
-    tk.Label(menu, text="REGISTRATION APPLICATION",font=("Times New Roman", 10, "bold")).pack(pady=15)
-    tk.Button(menu, text="Patient Registration", command=patient_registration).pack(pady=15)
-    tk.Button(menu, text="Guest Registration", command=guest_registration).pack(pady=15)
-    tk.Button(menu, text="Close", command=menu.destroy).pack(pady=15)
+    label("REGISTRATION APPLICATION")
+    button("Patient Registration", patient_registration)
+    button("Guest Registration", guest_registration)
+    button("Back", user_menu, "danger")
 
-#PATIENT application
+# PATIENT application
+
+
 def patient_registration():
-    menu = tk.Toplevel(root)
-    menu.title("Patient Registration")
-    menu.geometry("300x400")
+    clear("Patient Registration")
 
-    tk.Label(menu, text="Register Applicant",font=("Times New Roman", 10, "bold")).pack(pady=15)
-    
-    tk.Label(menu, text="First Name").pack(pady=3)
-    first_name = tk.Entry(menu)
-    first_name.pack()
-    
-    tk.Label(menu, text="Last Name").pack(pady=3)
-    last_name = tk.Entry(menu)
-    last_name.pack()
-    
-    tk.Button(menu, text="REGISTER", command=patient_registration).pack(pady=15)
-    tk.Button(menu, text="Close", command=menu.destroy).pack(pady=15)
+    label("Register Applicant")
+    first_name = entry("First Name")
+    last_name = entry("Lastname")
 
-#GUEST application
+    button("REGISTER", patient_registration)
+    button("Close", user_menu, "danger")
+
+# GUEST application
 def guest_registration():
-    menu = tk.Toplevel(root)
-    menu.title("Guest Registration")
-    menu.geometry("300x400")
+    clear("Guest Registration")
+    first_name = entry("first_name")
+    last_name = entry("last_name")
 
-    tk.Label(menu, text="Register Guest",font=("Times New Roman", 10, "bold")).pack(pady=15)
-    
-    tk.Label(menu, text="First Name").pack(pady=3)
-    first2_name = tk.Entry(menu)
-    first2_name.pack()
-    
-    tk.Label(menu, text="Last Name").pack(pady=3)
-    last2_name = tk.Entry(menu)
-    last2_name.pack()
-    
-    tk.Button(menu, text="REGISTER", command=guest_registration).pack(pady=15)
-    tk.Button(menu, text="Close", command=menu.destroy).pack(pady=15)
-    
-
-#client resource management application
-def client_resource_application():
-    menu = tk.Toplevel(root)
-    menu.title("Client Resource Application")
-    menu.geometry("300x400")
-
-    tk.Label(menu, text="CLIENT RESOURCE APPLICATION",font=("Times New Roman", 10, "bold")).pack(pady=15)
-    tk.Button(menu, text="Close", command=menu.destroy).pack(pady=15)
+    tk.Button("Register", guest_registration)
+    button("Close", user_menu, "danger")
 
 # Main GUI
-
-
 def main_menu():
     clear("Patient Information System")
     label("Choose how you want to sign in.")
