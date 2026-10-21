@@ -2,101 +2,121 @@
     {
         "Name": "Angel Bautista",
         "I.D.": 637967,
+        "Specialty": "General Medicine",
         "Status": "Clocked out"
     },
     {
         "Name": "Samantha dela Cruz",
         "I.D.": 869942,
+        "Specialty": "Pediatrics",
         "Status": "Clocked out"
     },
     {
         "Name": "Nathaniel Rivera",
         "I.D.": 541144,
+        "Specialty": "Cardiology",
         "Status": "Clocked in"
     },
     {
         "Name": "Princess Delos Santos",
         "I.D.": 171022,
+        "Specialty": "Dermatology",
         "Status": "Clocked out"
     },
     {
         "Name": "Nathan Ramos",
         "I.D.": 204647,
+        "Specialty": "Orthopedics",
         "Status": "Clocked out"
     },
     {
         "Name": "Princess Bautista",
         "I.D.": 454040,
+        "Specialty": "Obstetrics and Gynecology",
         "Status": "Clocked in"
     },
     {
         "Name": "Sofia Mendoza",
         "I.D.": 843224,
+        "Specialty": "Neurology",
         "Status": "Clocked in"
     },
     {
         "Name": "Nathan Reyes",
         "I.D.": 911990,
+        "Specialty": "Radiology",
         "Status": "Clocked in"
     },
     {
         "Name": "Samantha Ramos",
         "I.D.": 520838,
+        "Specialty": "Ophthalmology",
         "Status": "Clocked in"
     },
     {
         "Name": "Ayesha Rivera",
         "I.D.": 550248,
+        "Specialty": "Internal Medicine",
         "Status": "Clocked in"
     },
     {
         "Name": "Angel Lopez",
         "I.D.": 732032,
+        "Specialty": "Emergency Medicine",
         "Status": "Clocked in"
     },
     {
         "Name": "Gabriel Bautista",
         "I.D.": 709618,
+        "Specialty": "General Surgery",
         "Status": "Clocked in"
     },
     {
         "Name": "Ezekiel Perez",
         "I.D.": 227117,
+        "Specialty": "Anesthesiology",
         "Status": "Clocked in"
     },
     {
         "Name": "Sofia Del Rosario",
         "I.D.": 729399,
+        "Specialty": "Psychiatry",
         "Status": "Clocked out"
     },
     {
         "Name": "Ayesha Aquino",
         "I.D.": 531291,
+        "Specialty": "Pulmonology",
         "Status": "Clocked in"
     },
     {
         "Name": "Nathan Bautista",
         "I.D.": 981654,
+        "Specialty": "Urology",
         "Status": "Clocked out"
     },
     {
         "Name": "Matthew Perez",
         "I.D.": 685862,
+        "Specialty": "Gastroenterology",
         "Status": "Clocked out"
     },
     {
         "Name": "Zoey Fernandez",
         "I.D.": 386244,
+        "Specialty": "Nephrology",
         "Status": "Clocked out"
     },
     {
         "Name": "Jacob Cruz",
         "I.D.": 673817,
+        "Specialty": "Pathology",
         "Status": "Clocked out"
     },
     {
         "Name": "Matthew Flores",
         "I.D.": 242977,
+        "Specialty": "ENT",
         "Status": "Clocked out"
     }
 ]

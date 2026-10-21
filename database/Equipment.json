@@ -2,141 +2,169 @@
     {
         "Name": "Stethoscope",
         "I.D.": 631791,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Blood Pressure Monitor",
         "I.D.": 478806,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Ophthalmoscope",
         "I.D.": 612626,
+        "Quantity": 4,
         "Status": "On stock"
     },
     {
         "Name": "Otoscope",
         "I.D.": 699761,
+        "Quantity": 6,
         "Status": "On stock"
     },
     {
         "Name": "Pulse Oximeter",
         "I.D.": 282780,
+        "Quantity": 12,
         "Status": "On stock"
     },
     {
         "Name": "Thermometer",
         "I.D.": 866355,
+        "Quantity": 15,
         "Status": "On stock"
     },
     {
         "Name": "Electrocardiogram (ECG) Machine",
         "I.D.": 476212,
+        "Quantity": 3,
         "Status": "On stock"
     },
     {
         "Name": "Ultrasound Machine",
         "I.D.": 857500,
+        "Quantity": 2,
         "Status": "On stock"
     },
     {
         "Name": "X-ray Machine",
         "I.D.": 539224,
+        "Quantity": 2,
         "Status": "On stock"
     },
     {
         "Name": "CT Scanner",
         "I.D.": 425763,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "MRI Machine",
         "I.D.": 555983,
+        "Quantity": 1,
         "Status": "On stock"
     },
     {
         "Name": "Ventilator",
         "I.D.": 728429,
+        "Quantity": 5,
         "Status": "On stock"
     },
     {
         "Name": "Defibrillator",
         "I.D.": 480563,
+        "Quantity": 4,
         "Status": "On stock"
     },
     {
         "Name": "Infusion Pump",
         "I.D.": 154011,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Dialysis Machine",
         "I.D.": 189609,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Patient Monitor",
         "I.D.": 577999,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Oxygen Concentrator",
         "I.D.": 547981,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "CPAP Machine",
         "I.D.": 866303,
+        "Quantity": 6,
         "Status": "On stock"
     },
     {
         "Name": "Scalpel",
         "I.D.": 177147,
+        "Quantity": 30,
         "Status": "On stock"
     },
     {
         "Name": "Surgical Scissors",
         "I.D.": 407304,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Forceps",
         "I.D.": 243641,
+        "Quantity": 25,
         "Status": "On stock"
     },
     {
         "Name": "Suction Unit",
         "I.D.": 968929,
+        "Quantity": 7,
         "Status": "On stock"
     },
     {
         "Name": "Autoclave",
         "I.D.": 584454,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Surgical Lights",
         "I.D.": 411832,
+        "Quantity": 3,
         "Status": "On stock"
     },
     {
         "Name": "Anesthesia Machine",
         "I.D.": 684851,
+        "Quantity": 0,
         "Status": "Off stock"
     },
     {
         "Name": "Hospital Bed",
         "I.D.": 831441,
+        "Quantity": 20,
         "Status": "On stock"
     },
     {
         "Name": "Wheelchair",
         "I.D.": 803192,
+        "Quantity": 10,
         "Status": "On stock"
     },
     {
         "Name": "IV Stand",
         "I.D.": 349536,
+        "Quantity": 0,
         "Status": "Off stock"
     }
 ]
