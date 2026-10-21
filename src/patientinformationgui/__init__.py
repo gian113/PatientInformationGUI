@@ -621,9 +621,14 @@ def main_menu():
     tk.Frame(content, bg=THEME["bg"], height=10).pack()
     button("ADMIN", admin)
     button("USER", user_menu)
-    img_size = logo.resize((200, 200))
-    logo_main = ImageTk.PhotoImage(img_size, Image.LANCZOS)
-    tk.Label(root, image=logo_main).pack(pady=20)
+    image = Image.open(images_path)
+    logo_img = image.resize((200, 200))
+    photo = ImageTk.PhotoImage(logo_img)
+
+    labels = tk.Label(root, image=photo)
+    # CRITICAL: Keep a reference to prevent garbage collection
+    labels.image = photo 
+    labels.pack(pady=20)
 
 
 main_menu()
