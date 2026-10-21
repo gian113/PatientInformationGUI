@@ -5,17 +5,17 @@ MINIMAL ORDER CHECKLIST
 -----------------------
   [/ gian] database.py with load/save
   [/ all of us] all feature functions
-  [ ] test script confirms database.py works
+  [/] test script confirms database.py works
   [/ xian] App + RoleSelect + AdminLogin
-  [o xian] AdminMenu, DoctorsPage, EquipmentPage
-  [o xian] UserMenu + RegistrationMenu + ServicesMenu
+  [/ xian] AdminMenu, DoctorsPage, EquipmentPage
+  [/ xian] UserMenu + RegistrationMenu + ServicesMenu
   [/ aira] PatientForm (pattern for all forms)
   [/ aira] GuestForm, AppointmentForm
   [/ aira] SearchPage
-  [o gian] BillingPage
-  [o gian] Bug list above fixed
-  [o gian] Full test pass (Step 6)
-  [o gian] Polish
+  [/ gian] BillingPage
+  [/ gian] Bug list above fixed
+  [/ gian] Full test pass (Step 6)
+  [/ gian] Polish
 '''
 
 import tkinter as tk
@@ -24,6 +24,7 @@ import json
 import os
 import random
 from datetime import datetime
+from PIL import Image, ImageTk
 
 # locates the first 2 folders outside of this one
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -36,10 +37,12 @@ Equipment_path = os.path.join(dir, "Equipment.json")
 Medical_path = os.path.join(dir, "Medical_personel.json")
 guest_path = os.path.join(dir, "guest_data.json")
 billing_path = os.path.join(dir, "billing.json")
+images_path = os.path.join(dir, "image.png")
 
 ADMIN_USER = "admin"
 ADMIN_PASS = "admin123"
 
+logo = Image.open(images_path)
 # Patient Info
 sex = ["Male", "Female"]
 blood_type = ["A", "A-", "B", "B-", "AB", "AB-", "O", "O-"]
@@ -618,6 +621,9 @@ def main_menu():
     tk.Frame(content, bg=THEME["bg"], height=10).pack()
     button("ADMIN", admin)
     button("USER", user_menu)
+    img_size = logo.resize((200, 200))
+    logo_main = ImageTk.PhotoImage(img_size, Image.LANCZOS)
+    tk.Label(root, image=logo_main).pack(pady=20)
 
 
 main_menu()
